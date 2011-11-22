@@ -33,7 +33,7 @@ var
 implementation
 
 uses Unit1, Unit2, Unit4, FastStrings, Unit10, Unit11, Unit6, Unit7, Unit8,
-  Unit12, Unit13;
+  Unit12, Unit13, Unit9;
 
 {$R *.dfm}
 function xMessageDlg(const Msg: string; DlgType : TMsgDlgType; Buttons : TMsgDlgButtons; Captions: array of string) : Integer;
@@ -186,18 +186,10 @@ var
   Drive: Char;
   Flag: Integer;
   erg : integer;
-   ini:TiniFile;
-    dat:string;
-    exepath:String;
-    Snap: THandle;
-    ProcessE: TProcessEntry32;
-    modh: THandle;
-    ModuleE: TModuleEntry32;
 begin
-Constraints.MaxHeight:=Constraints.MinHeight;
-Constraints.MaxWidth:=Constraints.MinWidth;
+
 muri:=False;
- { label1.Caption:=datetimetostr(Date+incsecond(Time,-10));
+  label1.Caption:=datetimetostr(Date+incsecond(Time,2));
 
   Timer1.Enabled:=True;
   exit;
@@ -206,15 +198,15 @@ muri:=False;
   {Meldung eines kritischen Systemfehlers vehindern}
   ErrorMode := SetErrorMode(SEM_FailCriticalErrors);
   try
-
-  IF fileexists('GemeindeMuri.lic') then begin
+IF fileexists('GemeindeMuri.lic') then begin
   muri:=True;
   label1.Caption:=datetimetostr(Date+incsecond(Time,-10));
   Timer1.Enabled:=True;
   exit;
-  end;
+end;
+ muri:=false;
 
- label1.Caption:=datetimetostr(Date+incsecond(Time,2));
+ label1.Caption:=datetimetostr(Date+incsecond(Time,3));
    flag:=0;
 
    while(flag = 0) do begin
@@ -223,9 +215,8 @@ muri:=False;
          begin
               if((ParamStr(0) = GetSpecialFolder(Handle, 38)+'\Cadac\Cadac_cd.exe'))
               then begin
-                    Application.Title:='Cadac';
                     Timer1.Enabled:=True;
-                    label1.Caption:=datetimetostr(Date+incsecond(Time,2));
+                    label1.Caption:=datetimetostr(Date+incsecond(Time,3));
                     exit;
                     end;
 
@@ -235,7 +226,7 @@ muri:=False;
                 then begin
                     flag:=1;
                     Timer1.Enabled:=True;
-                    label1.Caption:=datetimetostr(Date+incsecond(Time,2));
+                    label1.Caption:=datetimetostr(Date+incsecond(Time,3));
                     exit;
                 end else begin
                       Timer1.Enabled:=false;
@@ -272,7 +263,6 @@ end;
 procedure TForm3.Timer1Timer(Sender: TObject);
 var
   stopTime: TDateTime;
-  ini:TIniFile;
 begin
  stopTime := strtodatetime(label1.caption);
 
@@ -280,6 +270,7 @@ begin
  Timer1.Enabled:=false;
  Form1.Top:=Form3.Top;
  Form1.Left:=Form3.Left;}
+
  Timer1.Enabled:=False;
 
 
@@ -290,18 +281,16 @@ begin
   Application.CreateForm(TForm7, Form7);
   Application.CreateForm(TForm8, Form8);
   Application.CreateForm(TForm10, Form10);
- Application.CreateForm(TForm11, Form11);
+  Application.CreateForm(TForm11, Form11);
   Application.CreateForm(TForm12, Form12);
   Application.CreateForm(TForm13, Form13);
-  
+  Application.CreateForm(TForm9, Form9);
 
  Form1.Show;
- Form3.Hide;
+ Form3.Hide;  
  end;
 
 end;
-
-
 
 procedure TForm3.Timer3Timer(Sender: TObject);
 begin

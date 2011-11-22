@@ -3,50 +3,50 @@ object Form7: TForm7
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Cadac Update'
-  ClientHeight = 319
-  ClientWidth = 568
+  ClientHeight = 244
+  ClientWidth = 434
   Color = clBtnFace
-  Constraints.MaxHeight = 479
-  Constraints.MaxWidth = 769
-  Constraints.MinHeight = 364
-  Constraints.MinWidth = 586
+  Constraints.MaxHeight = 282
+  Constraints.MaxWidth = 450
+  Constraints.MinHeight = 280
+  Constraints.MinWidth = 450
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 17
+  PixelsPerInch = 96
+  TextHeight = 13
   object Image1: TImage
-    Left = -30
-    Top = -31
-    Width = 659
-    Height = 387
+    Left = -23
+    Top = -24
+    Width = 504
+    Height = 296
     Center = True
     Enabled = False
     Stretch = True
   end
   object Label1: TLabel
-    Left = 73
-    Top = 187
-    Width = 4
-    Height = 18
+    Left = 56
+    Top = 143
+    Width = 3
+    Height = 13
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Memo1: TMemo
-    Left = 73
-    Top = 31
-    Width = 389
-    Height = 148
+    Left = 56
+    Top = 24
+    Width = 297
+    Height = 113
     Lines.Strings = (
       'Memo1')
     ReadOnly = True
@@ -54,19 +54,19 @@ object Form7: TForm7
     WordWrap = False
   end
   object Button1: TButton
-    Left = 322
-    Top = 230
-    Width = 140
-    Height = 33
+    Left = 246
+    Top = 176
+    Width = 107
+    Height = 25
     Caption = 'Update Runterladen'
     TabOrder = 1
     OnClick = Button1Click
   end
   object Gauge1: TProgressBar
-    Left = 73
-    Top = 241
-    Width = 196
-    Height = 22
+    Left = 56
+    Top = 184
+    Width = 150
+    Height = 17
     TabOrder = 2
   end
 end

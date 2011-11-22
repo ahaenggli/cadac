@@ -3,13 +3,13 @@ object Form1: TForm1
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Cadac'
-  ClientHeight = 364
+  ClientHeight = 362
   ClientWidth = 434
   Color = clBtnFace
-  Constraints.MaxHeight = 523
-  Constraints.MaxWidth = 588
-  Constraints.MinHeight = 398
-  Constraints.MinWidth = 448
+  Constraints.MaxHeight = 400
+  Constraints.MaxWidth = 450
+  Constraints.MinHeight = 389
+  Constraints.MinWidth = 442
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -23,11 +23,16 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = -11
-    Top = -24
+    Left = 0
+    Top = -16
     Width = 450
     Height = 400
+    AutoSize = True
     Center = True
+    Constraints.MaxHeight = 400
+    Constraints.MaxWidth = 450
+    Constraints.MinHeight = 400
+    Constraints.MinWidth = 450
     Enabled = False
     Picture.Data = {
       0A544A504547496D616765C72B0100FFD8FFE000104A46494600010201004800
@@ -2459,6 +2464,7 @@ object Form1: TForm1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
+    Transparent = True
   end
   object Label3: TLabel
     Left = 38
@@ -2472,6 +2478,7 @@ object Form1: TForm1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
+    Transparent = True
   end
   object Splitter1: TSplitter
     Left = 212
@@ -2525,6 +2532,7 @@ object Form1: TForm1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
+    Transparent = True
   end
   object Label5: TLabel
     Left = 322
@@ -2538,6 +2546,7 @@ object Form1: TForm1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
+    Transparent = True
   end
   object Label6: TLabel
     Left = 43
@@ -2557,6 +2566,7 @@ object Form1: TForm1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
+    Transparent = True
   end
   object StaticText1: TStaticText
     Left = 179
@@ -2566,36 +2576,41 @@ object Form1: TForm1
     Caption = #220'bungsform:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = 3
+    Font.Height = 1
     Font.Name = 'System'
     Font.Style = []
     ParentFont = False
     TabOrder = 0
   end
   object ComboBox1: TComboBox
-    Left = 136
+    Left = 135
     Top = 241
-    Width = 164
+    Width = 189
     Height = 21
     AutoComplete = False
     Style = csDropDownList
-    DropDownCount = 10
+    DropDownCount = 20
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ItemHeight = 13
+    ItemIndex = 11
     ParentFont = False
     TabOrder = 1
+    Text = 'W'#246'rtersuche'
     OnChange = ComboBox1Change
     Items.Strings = (
       '--- Schriftlich ---'
-      'Deutsch ------> Franz'
-      'Franz ------> Deutsch'
+      'Deutsch ------> Franz'#246'sisch'
+      'Franz'#246'sisch ------> Deutsch'
       '--- Visuell ---'
-      'Deutsch ----> Franz'
-      'Franz ----> Deutsch'
+      'Deutsch ----> Franz'#246'sisch'
+      'Franz'#246'sisch ----> Deutsch'
+      '--- Vokabelgalerie ---'
+      'Deutsch -------> Franz'#246'sisch'
+      'Franz'#246'sisch -------> Deutsch'
       '--- Sonstiges ---'
       'W'#246'rterliste zeigen'
       'W'#246'rtersuche'
@@ -2621,26 +2636,7 @@ object Form1: TForm1
       '2'
       '3'
       '4'
-      '5'
-      '6'
-      '7'
-      '8'
-      '9'
-      '10'
-      '11'
-      '12'
-      '13'
-      '14'
-      '15'
-      '16'
-      '17'
-      '18'
-      '19'
-      '20'
-      '21'
-      '22'
-      '23'
-      '24')
+      '5')
   end
   object Edit2: TComboBox
     Left = 110
@@ -2662,26 +2658,7 @@ object Form1: TForm1
       '2'
       '3'
       '4'
-      '5'
-      '6'
-      '7'
-      '8'
-      '9'
-      '10'
-      '11'
-      '12'
-      '13'
-      '14'
-      '15'
-      '16'
-      '17'
-      '18'
-      '19'
-      '20'
-      '21'
-      '22'
-      '23'
-      '24')
+      '5')
   end
   object Button1: TBitBtn
     Left = 38
@@ -2837,7 +2814,6 @@ object Form1: TForm1
     Height = 25
     Caption = 'Update'
     TabOrder = 10
-    OnClick = BitBtn1Click
     Glyph.Data = {
       E6040000424DE604000000000000360000002800000014000000140000000100
       180000000000B0040000C40E0000C40E00000000000000000000FFFFFFFFFFFF
@@ -2880,15 +2856,6 @@ object Form1: TForm1
       FFFFFFFFFFFFB4D9B466B166ACD5ACFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFF}
   end
-  object Button3: TButton
-    Left = 156
-    Top = 164
-    Width = 25
-    Height = 25
-    Caption = '?'
-    TabOrder = 11
-    OnClick = Button3Click
-  end
   object Button4: TButton
     Left = 275
     Top = 300
@@ -2896,14 +2863,23 @@ object Form1: TForm1
     Height = 25
     Action = Action1
     Caption = 'Hilfe'
-    TabOrder = 12
+    TabOrder = 11
   end
   object StaticText4: TStaticText
     Left = 135
     Top = 277
     Width = 4
     Height = 4
+    TabOrder = 12
+  end
+  object Button3: TButton
+    Left = 156
+    Top = 164
+    Width = 25
+    Height = 25
+    Caption = '?'
     TabOrder = 13
+    OnClick = Button3Click
   end
   object ActionList1: TActionList
     Left = 240
@@ -2914,9 +2890,17 @@ object Form1: TForm1
       OnExecute = Action1Execute
     end
   end
+  object ado: TADOTable
+    CursorType = ctStatic
+    EnableBCD = False
+    TableName = '1'
+    Left = 176
+    Top = 312
+  end
   object Timer1: TTimer
+    Enabled = False
     OnTimer = Timer1Timer
-    Left = 376
-    Top = 80
+    Left = 392
+    Top = 16
   end
 end

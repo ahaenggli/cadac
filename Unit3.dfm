@@ -3,9 +3,13 @@ object Form3: TForm3
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Cadac'
-  ClientHeight = 297
+  ClientHeight = 296
   ClientWidth = 434
   Color = clBtnFace
+  Constraints.MaxHeight = 334
+  Constraints.MaxWidth = 450
+  Constraints.MinHeight = 334
+  Constraints.MinWidth = 450
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -25,10 +29,10 @@ object Form3: TForm3
     Visible = False
   end
   object Image1: TImage
-    Left = -7
+    Left = 0
     Top = 0
-    Width = 440
-    Height = 313
+    Width = 450
+    Height = 400
     Enabled = False
     Picture.Data = {
       0A544A504547496D616765F10B0100FFD8FFE000104A46494600010101006000
@@ -2186,9 +2190,9 @@ object Form3: TForm3
   end
   object Timer3: TTimer
     Enabled = False
-    Interval = 500
+    Interval = 1500
     OnTimer = Timer3Timer
-    Left = 120
-    Top = 232
+    Left = 248
+    Top = 256
   end
 end

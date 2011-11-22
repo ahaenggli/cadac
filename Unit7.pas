@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, URLMon, SHellApi, ActiveX, ComCtrls, ExtCtrls, jpeg;
+  Dialogs,ADODB, StdCtrls, URLMon, SHellApi, ActiveX, ComCtrls, ExtCtrls, jpeg;
 
 type
  TForm7 = class(TForm)
@@ -146,15 +146,73 @@ end;
 procedure TForm7.Button1Click(Sender: TObject);
 var      Datei, Ziel:PChar;
        cDownStatus : cDownloadStatusCallback;
-  status: integer;
+  status,i2,ai,i: integer;
   s:String;
 begin
+
+
+form1.ado.Connection:=NIL;
+  form1.ado.active:=false;
+  form1.ado.EnableBCD:=false;
+  form1.ado.Close;
+  form1.ado.Free;
+     cDownStatus := cDownloadStatusCallBack.Create;
+  form1.ado:=TADOTAble.Create(self);
+DeleteFile(form1.path+'Voci.mdb');
+if not FileExists(form1.path+'Voci.mdb') then
+UrlDownloadToFile(nil, PChar('http://cadac.trachtengruppe-merenschwand.ch/CadacV2/Voci.mdb'), PChar(form1.path+'Voci.mdb'), 0, CDownStatus)
+else showmessage('error 1001');
+CDownStatus.free;
+with form1 do begin
+
+Ado.ConnectionString:='Provider=Microsoft.Jet.OLEDB.4.0;Data Source='+form1.path+'Voci.mdb;Persist Security Info=False';
+ado.TableName:='1';
+ado.EnableBCD:=True;
+ado.active:=true;
+i:=0;
+for i2 := 1 to 5 do begin
+
+   ado.active:=false;
+      ado.TableName:=inttostr(i2);
+      ado.active:=True;
+          ai:=0;
+        //  showmessage('error 1001');
+     repeat
+  if i > high(vocis) then SetLength(vocis, i+1);
+    if (vocis[i].ID = ado.Fields[0].asString) and (strtoint(vocis[i].Fehler)>0)  then begin
+     ado.edit;
+     ado.Fields[3].AsString :=vocis[i].Fehler;
+    end;
+      
+      
+      vocis[i].Lektion := ado.TableName;
+      vocis[i].ID := ado.Fields[0].Value;
+      vocis[i].Franz := ado.Fields[1].Value;
+      vocis[i].Deutsch := ado.Fields[2].Value;
+
+
+      if varIsNull(ado.Fields[3].value) then begin
+      ado.edit; ado.Fields[3].asString:='0';  end;
+
+      vocis[i].Fehler := ado.Fields[3].value;
+
+      inc(i);
+      inc(ai);
+      ado.next;
+    until ado.RecordCount=ai-1;
+end;
+end;
+
+
+
+if (form1.Memo1.Lines[5]='1')then begin
+
 GetDir(0,s);
     Datei := PChar('http://'+url);
 
-    Ziel  := PChar(s+'\UpCadac.exe');//   showmessage(string(memo1.Lines[4]));
+    Ziel  := PChar(s+'\UpCadac.exe');
  cDownStatus := cDownloadStatusCallBack.Create;
- 
+
    status := URLDownloadToFIle(nil,Datei,Ziel,0,CDownStatus);
     cDownStatus.Free;
 
@@ -165,7 +223,9 @@ GetDir(0,s);
         Application.Terminate;
         end;
 
-
+end;
+   form1.Show;
+ hide;
 end;
 
 procedure TForm7.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -175,9 +235,7 @@ end;
 
 procedure TForm7.FormCreate(Sender: TObject);
 begin
-Constraints.MaxHeight:=Constraints.MinHeight;
-Constraints.MaxWidth:=Constraints.MinWidth;
-Image1.Picture:=Form1.Image1.Picture;
+  Image1.Picture:=Form1.Image1.Picture;
 end;
 
 procedure TForm7.FormShow(Sender: TObject);
@@ -186,7 +244,7 @@ begin
 try
 refresh;
 refresh;
-memo1.lines.loadfromfile(form1.path+':update.txt');
+memo1.lines.loadfromfile(form1.path+'update.txt');
 
     desc:=Memo1.Lines[3];
     url:=Memo1.Lines[2];
